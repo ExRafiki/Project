@@ -1,11 +1,10 @@
-const cells = [];
+var cells = [];
 $(function(){
 
   const shipLength = 3;
-  const shipslengths = [1,4,5];
-  const generatedBoard = new Board(8, 8);
-  // const guessPosition = [];
-  // const hit = [''];
+  const shipsLengths = [5,3,2,1];
+  const generatedBoard = new Board(8,8);
+  var score = 0;
   let x = null;
   let y = null;
 
@@ -14,11 +13,11 @@ $(function(){
       cells.push([]);
       for(let j = 0; j < height; j++){
         cells[i].push(0);
-        $(`<div class="grid-item" id="cell_${i}_${j}" data-ship=null data-x='${i}' data-y='${j}'>`).appendTo('.grid-container');
+        $(`<div class="grid-item" id="cell_${i}_${j}" data-ship='${null}' data-x='${i}' data-y='${j}'>`).appendTo('.grid-container');
       }
     }
   }
-  function makeShip(shipLength){ // Horiz/vertical ship
+  function makeShip(shipsLengths){
     var randomNumber = Math.floor(Math.random() * 2);
     let way = '';
     if(randomNumber === 1) {
@@ -28,57 +27,39 @@ $(function(){
     }
     if (way === 'H') {
       x = Math.floor(Math.random() * (cells.length));
-      y = Math.floor(Math.random() * (cells.length - shipLength + 1));
-      console.log('H', 'widthY=', y, 'heightX=', x);
-      for(let i = 0; i< shipLength;i++){
+      y = Math.floor(Math.random() * (cells.length - shipsLengths + 1));
+      for(let i = 0; i< shipsLengths;i++){
         cells[x][y+i] = 1;
-        // $('.grid-item').data('ship', 'true');
-        // if ('data-x'-'data-x' + cells[x][y+i] = 1)
+        console.log(`#cell_${x}_${y+i}`);
+        $(`#cell_${x}_${y+i}`).data('ship', 'true');
 
-        // var matches = cells.querySelectorAll('data-ship');
-        // for(let i = 0; i< shipLength;i++){
-        //  $('.grid-item'),'(data-ship=true)'.appendTo('.grid-container');
-        //  $(".grid-item"; data-ship=true ).appendTo('.grid-container');
-        // }
       }
     }else{
       y = Math.floor(Math.random() * (cells.length));
-      x = Math.floor(Math.random() * (cells.length - shipLength + 1));
+      x = Math.floor(Math.random() * (cells.length - shipsLengths + 1));
       console.log('V','withX=',x, 'heightY=', y);
-      for(let i = 0; i< shipLength;i++){
+      for(let i = 0; i< shipsLengths;i++){
         cells[x+i][y] = 1;
-        // $('<div class="grid-item" data-ship=true >').appendTo('.grid-container');
+        $(`#cell_${x+i}_${y}`).data('ship', 'true');
       }
     }
   }
-  $(shipslengths).each(function(i, shipslengths){
-    makeShip(shipslengths);
+  $(shipsLengths).each(function(i, shipsLengths){
+    makeShip(shipsLengths);
   });
 
   console.log(cells);
 
-  // var result;
-  // for( var i = 0, len = cells.length; i < len; i++ ) {
-  //   if( cells[i][0] === '1' ) {
-  //     result = cells[i];
-  //     console.log(result);
-  //     break;
-  //   }
-  // }
-
-
-  // $('.grid-item').on('click', function() {
-  //   if($(this).data('ship') === true) {
-  //     $(this).css('background', 'red');
-  //   } else {
-  //     alert('nothing is there');
-  //   }
-  // });
+  $('.grid-item').on('click', function() {
+    if($(this).data('ship') === 'true') {
+      $(this).css('background', 'red');
+      score += 5 ;
+      $('p.Score').text('Score').text(score);
+    } else {
+      $(this).css('background', 'blue');
+    }
+  });
 });
 // add the image to appear when the div is a hit
 // add the correct hit to the score board
 // high score added and saved locally
-
-// while (cells.filter(position => generatedBoard[x][y] === 0)) {
-// while (generatedBoard[x][y] === 0) {
-// }
