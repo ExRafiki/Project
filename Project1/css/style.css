@@ -1,21 +1,26 @@
 aside {
-  border-left: 1px solid black;
+  border-left: 3px solid yellow;
+  border-right:3px solid yellow;
+  border-bottom: 1px solid red;
+  border-top: 1px solid red;
   float: right;
   margin-top: -450px;
   margin-right: 80px;
-  background-color: Papayawhip;
-  border-radius: 0px 10px 10px 0px;
+  background-color: black;
+  border-radius:10px;
   z-index: 1;
   position: relative;
   padding: 30px;
   padding-left: 46px;
 }
 body {
-  background-color: black;
+  background-image: url("../images/colorgrid.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .grid-container {
-  border-left: 1px solid black;
-  background-color: Papayawhip;
+  border: 1px solid black;
+  background-color: black;
   border-radius: 15px;
   display: grid;
   grid-template-columns: auto auto auto;
@@ -36,27 +41,31 @@ body {
   text-align: center;
   width:auto;
   height: auto;
-  background: yellow;
+  background: rgb(255, 117, 26);
   border-radius: 5px;
   z-index: 4;
 }
 
 h1{
-  font-family: 'Russo One', sans-serif;
-  color:FireBrick;
-  margin-top: 120px;
+  font-family: 'Audiowide', cursive;
+  color:red;
+  margin-top: 80px;
   text-align: center;
   font-style: normal;
   font-size: 70px;
-  padding-bottom: 20px;
+  padding-bottom: 40px;
 }
 h2 {
   font-family: 'Press Start 2P', cursive;
-  color: FireBrick;
+  color: rgb(210, 20, 58);
   font-size: 30px;
   padding-bottom: 20px;
 }
 #story {
   float: right;
   margin:200px;
+}
+.Score {
+ color:yellow;
+ font-size: 30px;
 }

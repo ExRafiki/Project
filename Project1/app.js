@@ -3,7 +3,7 @@ var cells = [];
 $(function(){
 
   const shipsLengths = [5,4,2,1];
-  const generatedBoard = new Board(8,8);
+  let generatedBoard = new Board(8,8);
   var score = 0;
   let x = null;
   let y = null;
@@ -72,11 +72,17 @@ $(function(){
   $('.grid-item').on('click', function() {
     if($(this).data('ship') === 'true') {
       // if($(this).css('background', 'red'))
-      $(this).css('background', 'red');
+      $(this).css('background', 'yellow');
       score += 5 ;
       $('p.Score').text('Score : ').append(score);
     } else {
-      $(this).css('background', 'blue');
+      $(this).css('background', 'black');
     }
   });
+
+  // function reset(){
+  //   if(score === 55)
+  //     generatedBoard = new Board(12,12);
+  // }
+  // reset();
 });
