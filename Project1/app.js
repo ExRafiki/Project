@@ -2,12 +2,16 @@ var cells = [];
 
 $(function(){
 
-  const shipsLengths = [5,4,2,1];
+  const shipsLengths = [3,2,4,2,1];
   let generatedBoard = new Board(8,8);
   var score = 0;
   let x = null;
   let y = null;
   const DEV = true;
+
+  let clickCount = 0;
+  const clickCountMax = 5;
+
 
   function Board(width, height){
     for(let i = 0; i < width; i++){
@@ -56,12 +60,12 @@ $(function(){
       cells[position[0]][position[1]+i] = 1;
       if (way === 'H') {
         $(`#cell_${x}_${y+i}`).data('ship', 'true');
-        // if(DEV)
-        //   $(`#cell_${x}_${y+i}`).css('background', 'red');
+        if(DEV)
+          $(`#cell_${x}_${y+i}`).css('background', 'red');
       } else{
         $(`#cell_${x+i}_${y}`).data('ship', 'true');
-        // if(DEV)
-        //   $(`#cell_${x+i}_${y}`).css('background', 'red');
+        if(DEV)
+          $(`#cell_${x+i}_${y}`).css('background', 'red');
       }
     }
   }
@@ -70,8 +74,16 @@ $(function(){
   });
 
   $('.grid-item').on('click', function() {
+    clickCount++;
+    if(clickCount >= clickCountMax){
+      alert('YOU Really are bad');
+      location.reload();
+      // $( "" ).load( "ajax/test.html #container" );
+      clickCount= 0;
+      // $('grid-item'.css('background' , 'orange'));
+      return;
+    }
     if($(this).data('ship') === 'true') {
-      // if($(this).css('background', 'red'))
       $(this).css('background', 'yellow');
       score += 5 ;
       $('p.Score').text('Score : ').append(score);
@@ -80,9 +92,12 @@ $(function(){
     }
   });
 
-  // function reset(){
-  //   if(score === 55)
-  //     generatedBoard = new Board(12,12);
+  // function gg(){
+  //   if(score === shipsLengths.reduce)
+  //     generatedBoard = new Board(8,2);
   // }
   // reset();
+
+  // make so the click max is the total of ship lenth + variables
+  // add the next level through adding a different grid after reload
 });
