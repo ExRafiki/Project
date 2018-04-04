@@ -28,19 +28,24 @@ $(function(){
     if (way === 'H') {
       x = Math.floor(Math.random() * (cells.length));
       y = Math.floor(Math.random() * (cells.length - shipsLengths + 1));
+      console.log('V','withX=',x, 'heightY=', y);
       for(let i = 0; i< shipsLengths;i++){
+        // while (){
         cells[x][y+i] = 1;
-        console.log(`#cell_${x}_${y+i}`);
+        // console.log(`#cell_${x}_${y+i}`);
         $(`#cell_${x}_${y+i}`).data('ship', 'true');
-
+        // }
       }
     }else{
       y = Math.floor(Math.random() * (cells.length));
       x = Math.floor(Math.random() * (cells.length - shipsLengths + 1));
       console.log('V','withX=',x, 'heightY=', y);
       for(let i = 0; i< shipsLengths;i++){
+        // while (){
         cells[x+i][y] = 1;
+        // console.log(`#cell_${x+i}_${y}`);
         $(`#cell_${x+i}_${y}`).data('ship', 'true');
+        // }
       }
     }
   }
@@ -54,7 +59,7 @@ $(function(){
     if($(this).data('ship') === 'true') {
       $(this).css('background', 'red');
       score += 5 ;
-      $('p.Score').text('Score').text(score);
+      $('p.Score').text('Score : ').append(score);
     } else {
       $(this).css('background', 'blue');
     }
