@@ -27,6 +27,7 @@ $(function(){
       }
     }
   }
+
   function findPosition(shipLength, horizontal){
     let currentTestPositions = [];
     do {
@@ -99,6 +100,25 @@ $(function(){
       Board(8,8);
       $(shipsLengths).each(function(i, shipLength){
         makeShip(shipLength);
+      });
+      $('.grid-item').one('click', function() {
+        clickCount++;
+        console.log('clicked!!!');
+        if(clickCount >= clickCountMax){
+          alert('YOU really are bad');
+          location.reload();
+          clickCount= 0;
+          // $('grid-item'.css('background' , 'orange'));
+          return;
+        }
+        if($(this).data('ship') === 'true') {
+          $(this).css('background', 'yellow');
+          score += 1 ;
+          $('p.Score').text('Score : ').append(score);
+          console.log('i am here');
+        } else {
+          $(this).css('background', 'black');
+        }
       });
       console.log(cells);
     }
