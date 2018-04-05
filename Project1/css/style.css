@@ -27,7 +27,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   margin-top:auto;
-  grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ; /*why does it tag it?*/
+  grid-template-columns:1fr 1fr  1fr 1fr 1fr 1fr 1fr 1fr ; /*why does it tag it?*/
   width: 500px;
   height: 500px;
   float: center;

@@ -3,17 +3,20 @@ var cells = [];
 $(function(){
 
   const shipsLengths = [3,2,4,2,1];
-  let generatedBoard = new Board(8,8);
   var score = 0;
   let x = null;
   let y = null;
+  let clickCount = 0;
+  const clickCountMax = 20;
+  const gg = (adding, currentValue) => adding + currentValue;
   const DEV = true;
 
-  let clickCount = 0;
-  const clickCountMax = 5;
-
+  Board(8,8);
 
   function Board(width, height){
+    if(cells.length > 0){
+      cells = [];
+    }
     for(let i = 0; i < width; i++){
       cells.push([]);
       for(let j = 0; j < height; j++){
@@ -69,35 +72,33 @@ $(function(){
       }
     }
   }
-  $(shipsLengths).each(function(i, shipsLengths){
-    makeShip(shipsLengths);
+  $(shipsLengths).each(function(i, shipLength){
+    makeShip(shipLength);
   });
 
   $('.grid-item').on('click', function() {
     clickCount++;
     if(clickCount >= clickCountMax){
-      alert('YOU Really are bad');
+      alert('YOU really are bad');
       location.reload();
-      // $( "" ).load( "ajax/test.html #container" );
       clickCount= 0;
       // $('grid-item'.css('background' , 'orange'));
       return;
     }
     if($(this).data('ship') === 'true') {
       $(this).css('background', 'yellow');
-      score += 5 ;
+      score += 1 ;
       $('p.Score').text('Score : ').append(score);
     } else {
       $(this).css('background', 'black');
     }
+    if (score === shipsLengths.reduce(gg)){
+      $( '.grid-container').empty();
+      Board(8,8);
+      $(shipsLengths).each(function(i, shipLength){
+        makeShip(shipLength);
+      });
+      console.log(cells);
+    }
   });
-
-  // function gg(){
-  //   if(score === shipsLengths.reduce)
-  //     generatedBoard = new Board(8,2);
-  // }
-  // reset();
-
-  // make so the click max is the total of ship lenth + variables
-  // add the next level through adding a different grid after reload
 });
