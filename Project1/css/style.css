@@ -54,6 +54,30 @@ h1{
   font-style: normal;
   font-size: 70px;
   padding-bottom: 40px;
+  text-shadow: 5px 5px 0 #000,
+    -5px 5px 0 #000,
+    5px -5px 0 #000,
+    -5px -5px 0 #000,
+    0px 5px 0 #000,
+    0px -5px 0 #000,
+    -5px 0px 0 #000,
+    5px 0px 0 #000,
+    10px 10px 0 #000,
+    -10px 10px 0 #000,
+    10px -10px 0 #000,
+    -10px -10px 0 #000,
+    0px 10px 0 #000,
+    0px -10px 0 #000,
+    -10px 0px 0 #000,
+    10px 0px 0 #000,
+    5px 10px 0 #000,
+    -5px 10px 0 #000,
+    5px -10px 0 #000,
+    -5px -10px 0 #000,
+    10px 5px 0 #000,
+    -10px 5px 0 #000,
+    10px -5px 0 #000,
+    -10px -5px 0 #000;
 }
 h2 {
   font-family: 'Press Start 2P', cursive;
@@ -69,3 +93,12 @@ h2 {
  color:yellow;
  font-size: 30px;
 }
+/* 
+@keyframes fall-top {
+  0% {
+    top: -200vh; }
+  100% {
+    top: -50; } }
+.fade {
+  animation: 1s;
+  animation-fill-mode: forwards; } */

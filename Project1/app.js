@@ -2,16 +2,18 @@ var cells = [];
 
 $(function(){
 
-  const shipsLengths = [3,2,4,2,1];
+  const shipsLengths = [2,3,4,5];
   var score = 0;
   let x = null;
   let y = null;
   let clickCount = 0;
-  const clickCountMax = 20;
   const gg = (adding, currentValue) => adding + currentValue;
+  const clickCountMax = 20;
+  const workProgress = shipsLengths.reduce(gg);
   const DEV = true;
 
   Board(8,8);
+  console.log(cells)
 
   function Board(width, height){
     if(cells.length > 0){
@@ -75,8 +77,7 @@ $(function(){
   $(shipsLengths).each(function(i, shipLength){
     makeShip(shipLength);
   });
-
-  $('.grid-item').on('click', function() {
+  $('.grid-item').one('click', function() {
     clickCount++;
     if(clickCount >= clickCountMax){
       alert('YOU really are bad');
@@ -89,6 +90,7 @@ $(function(){
       $(this).css('background', 'yellow');
       score += 1 ;
       $('p.Score').text('Score : ').append(score);
+      console.log('i am here');
     } else {
       $(this).css('background', 'black');
     }
