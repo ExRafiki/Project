@@ -1,8 +1,14 @@
 var cells = [];
+  //
+  // window.onload = function () {
+  //   document.getElementsByTagName('.close').onclick = function () {
+  //     document.getElementById('myModal').style.display = 'none';
+  //   };
+  // };
 
 $(function(){
 
-  const shipsLengths = [2,3,4,5];
+  const shipsLengths = [3,3,3,3];
   var score = 0;
   let x = null;
   let y = null;
@@ -13,7 +19,7 @@ $(function(){
   const DEV = true;
 
   Board(8,8);
-  console.log(cells)
+  console.log(cells);
 
   function Board(width, height){
     if(cells.length > 0){
@@ -41,34 +47,34 @@ $(function(){
       }
       console.log(`finding position for ship with ${shipLength}(${horizontal}) starting from ${x}, ${y}`);
       for(let i = 0; i< shipLength ;i++){
-        currentTestPositions.push(cells[x][y+i]);
+        const position = horizontal ? cells[x][y+i] : cells[x+i][y]
+        currentTestPositions.push(position);
       }
       console.log(currentTestPositions);
     } while (!currentTestPositions.every((cell) => cell === 0));
-
+    console.log(x,y);
     return [x, y];
   }
   function makeShip(shipLength){
     var randomNumber = Math.floor(Math.random() * 2);
     let position = null;
-    let way = '';
-    if(randomNumber === 1) {
-      way = 'H';
-    } else {
-      way = 'V';
-    }
+    const way = randomNumber === 1 ? 'H': 'V';
+
     if (way === 'H') {
       position = findPosition(shipLength, true); // 2nd argument is for Horizontal or Vertical, true === horizontal
     }else{
       position = findPosition(shipLength, false);
     }
     for(let i = 0; i< shipLength ;i++){
-      cells[position[0]][position[1]+i] = 1;
+
       if (way === 'H') {
+        cells[position[0]][position[1]+i] = 1;
         $(`#cell_${x}_${y+i}`).data('ship', 'true');
         if(DEV)
           $(`#cell_${x}_${y+i}`).css('background', 'red');
       } else{
+        cells[position[0]+i][position[1]] = 1;
+
         $(`#cell_${x+i}_${y}`).data('ship', 'true');
         if(DEV)
           $(`#cell_${x+i}_${y}`).css('background', 'red');
@@ -78,6 +84,8 @@ $(function(){
   $(shipsLengths).each(function(i, shipLength){
     makeShip(shipLength);
   });
+  $('.grid-item').one('click', triggerAll);
+
   $('.grid-item').one('click', function() {
     clickCount++;
     if(clickCount >= clickCountMax){
@@ -100,7 +108,9 @@ $(function(){
       Board(8,8);
       $(shipsLengths).each(function(i, shipLength){
         makeShip(shipLength);
+        clickCount = 0;
       });
+
       $('.grid-item').one('click', function() {
         clickCount++;
         console.log('clicked!!!');
@@ -123,4 +133,42 @@ $(function(){
       console.log(cells);
     }
   });
+  // function triggerAll(){
+  //   clickCounter();
+  //   checkBox();
+  //   reset();
+  // }
+  // function checkBox(){
+  //   if($(this).data('ship') === 'true') {
+  //     $(this).css('background', 'yellow');
+  //     score += 1 ;
+  //     $('p.Score').text('Score : ').append(score);
+  //     console.log('i am here');
+  //   } else {
+  //     $(this).css('background', 'black');
+  //   }
+  // }
+  //
+  // function clickCounter() {
+  //   clickCount++;
+  //   console.log('clicked!!!');
+  //   if(clickCount >= clickCountMax){
+  //     alert('YOU really are bad');
+  //     location.reload();
+  //     clickCount= 0;
+  //     // $('grid-item'.css('background' , 'orange'));
+  //     return;
+  //   }
+  // }
+  // function reset(){
+  //   if (score === shipsLengths.reduce(gg)){
+  //     $( '.grid-container').empty();
+  //     Board(8,8);
+  //     $(shipsLengths).each(function(i, shipLength){
+  //       makeShip(shipLength);
+  //       clickCount = 0;
+  //     });
+  //   }
+  // }
+
 });

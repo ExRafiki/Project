@@ -2,7 +2,7 @@ aside {
   border-left: 3px solid yellow;
   border-right:3px solid yellow;
   border-bottom: 1px solid red;
-  border-top: 1px solid red;
+  border-top: 1px solid blue;
   float: right;
   margin-top: -450px;
   margin-right: 80px;
@@ -94,18 +94,10 @@ h2 {
  font-size: 30px;
 }
 
-@keyframes fall-top {
-  0% {
-    top: -200vh; }
-  100% {
-    top: -50; } }
-.fade {
-  animation: 1s;
-  animation-fill-mode: forwards; }
 
-.modal {
+.myModal {
     display: none;
-    position: fixed;
+    position: relative;
     z-index: 1; /* Sit on top */
     left: 0;
     top: 0;
@@ -113,25 +105,11 @@ h2 {
     height: 100%;
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
-    animation-name: animatetop;
+    animation-name: fall-top;
     animation-duration: 0.4s
-}
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-}
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
+
+@keyframes fall-top {
+  0% {
+    top: 10em; }
+  100% {
+    top: -50; } }
