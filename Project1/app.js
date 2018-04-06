@@ -10,16 +10,16 @@ $(function(){
 //---------------VARIABLES-----------------------------------------------------
   const shipsLengths = [3,3,3,3];
   var score = 0;
+  // var internalScore = 0;
   let x = null;
   let y = null;
   let clickCount = 0;
   const gg = (adding, currentValue) => adding + currentValue;
-  const clickCountMax = 20;
+  const clickCountMax = 25;
   const DEV = true;
-  //----------------BOARD LOAD---------------------------------------------------
+  //----------------BOARD LOAD--------------------------------------------------
   Board(8,8);
-  console.log(cells);
-  //---------------BOARD FUNCTION------------------------------------------------
+  //---------------BOARD FUNCTION-----------------------------------------------
   function Board(width, height){
     if(cells.length > 0){
       cells = [];
@@ -51,7 +51,6 @@ $(function(){
       }
       console.log(currentTestPositions);
     } while (!currentTestPositions.every((cell) => cell === 0));
-    console.log(x,y);
     return [x, y];
   }
   //------------ POSITION MAKER -----------------------------------------------
@@ -84,62 +83,16 @@ $(function(){
   $(shipsLengths).each(function(i, shipLength){
     makeShip(shipLength);
   });
-  //------------------CLICK LISTENER-------------------------------------------
-  $('.grid-item').one('click',checkBox,triggerAll);
-
-  // $('.grid-item').one('click', function() {
-  //   clickCount++;
-  //   if(clickCount >= clickCountMax){
-  //     alert('YOU really are bad');
-  //     location.reload();
-  //     clickCount= 0;
-  //     // $('grid-item'.css('background' , 'orange'));
-  //     return;
-  //   }
-  //   if($(this).data('ship') === 'true') {
-  //     $(this).css('background', 'yellow');
-  //     score += 1 ;
-  //     $('p.Score').text('Score : ').append(score);
-  //   } else {
-  //     $(this).css('background', 'black');
-  //   }
-  //   if (score === shipsLengths.reduce(gg)){
-  //     $( '.grid-container').empty();
-  //     Board(8,8);
-  //     $(shipsLengths).each(function(i, shipLength){
-  //       makeShip(shipLength);
-  //       clickCount = 0;
-  //     });
-  //     $('.grid-item').one('click', function() {
-  //       clickCount++;
-  //       if(clickCount >= clickCountMax){
-  //         alert('YOU really are bad');
-  //         location.reload();
-  //         clickCount= 0;
-  //         // $('grid-item'.css('background' , 'orange'));
-  //         // return;
-  //       }
-  //       if($(this).data('ship') === 'true') {
-  //         $(this).css('background', 'yellow');
-  //         score += 1 ;
-  //         $('p.Score').text('Score : ').append(score);
-  //         console.log('i am here');
-  //       } else {
-  //         $(this).css('background', 'black');
-  //       }
-  //     });
-  //   }
-  // });
+  //----//-------//------CLICK LISTENER---//------//----------//--------//-----
+  $('.grid-container').on('click','.grid-item',triggerAll);
   //--------------------ATTEMPT------------------------------------------------
   function triggerAll(){
-    //this here is still the div
+    checkBox.call(this);
     clickCounter();
     reset();
   }
-  // $('.grid-item').one('click');
   //--------------------ATTEMP REFACTOR/CLEANER FUNCTIONS----------------------
   function checkBox(){
-    //cant get this scope larger
     if($(this).data('ship') === 'true') {
       console.log('checkBox i am here');
       $(this).css('background', 'yellow');
@@ -147,6 +100,7 @@ $(function(){
       $('p.Score').text('Score : ').append(score);
     } else {
       $(this).css('background', 'black');
+      // score -= 1;
     }
   }
   function clickCounter() {
@@ -154,30 +108,23 @@ $(function(){
     console.log('clickCounter clicked!!!');
     if(clickCount >= clickCountMax){
       alert('YOU really are bad');
-      location.reload();
       clickCount= 0;
-      return;
+      $( '.grid-container').empty();
+      Board(8,8);
+      $(shipsLengths).each(function(i, shipLength){
+        makeShip(shipLength);
+      });
     }
   }
   function reset(){
-    if (score === shipsLengths.reduce(gg)){
+    if ((score % shipsLengths.reduce(gg)) === 0){
       console.log('reset is here');
       $( '.grid-container').empty();
       Board(8,8);
       $(shipsLengths).each(function(i, shipLength){
         makeShip(shipLength);
         clickCount = 0;
-        $('.grid-item').one('click');
       });
     }
   }
-  //------------------BRAINSHIT------------------------------------------------
-  // var dives = document.getElementsByTagName('grid-item');
-  // function divesRoll(){
-  //   for (var i = 0; i < dives.length; i++){
-  //     dives[i].onclick = function() {
-  //       this.style.color = 'yellow';
-  //     };
-  //   }
-  // }
 });
