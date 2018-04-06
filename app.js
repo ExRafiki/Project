@@ -11,7 +11,7 @@ $(function(){
   let clicked = false;
   let stopAlert = 1;
   //----------------DEV TRIGGER-------------------------------------------------
-  const DEV = true;
+  // const DEV = true;
   //----------------BOARD LOAD--------------------------------------------------
   Board(8,8);
   //----------------BOARD FUNCTION----------------------------------------------
@@ -64,13 +64,13 @@ $(function(){
       if (way === 'H') {
         cells[position[0]][position[1]+i] = 1;
         $(`#cell_${x}_${y+i}`).data('ship', 'true');
-        if(DEV)
-          $(`#cell_${x}_${y+i}`).css('background', 'red');
+        // if(DEV)
+        //   $(`#cell_${x}_${y+i}`).css('background', 'red');
       } else{
         cells[position[0]+i][position[1]] = 1;
         $(`#cell_${x+i}_${y}`).data('ship', 'true');
-        if(DEV)
-          $(`#cell_${x+i}_${y}`).css('background', 'red');
+        // if(DEV)
+        //   $(`#cell_${x+i}_${y}`).css('background', 'red');
       }
     }
   }
