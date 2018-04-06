@@ -8,8 +8,10 @@ $(function(){
   let clickCount = 0;
   const gg = (adding, currentValue) => adding + currentValue;
   const clickCountMax = 40;
+  let clicked = false;
+  let stopAlert = 1;
   //----------------DEV TRIGGER-------------------------------------------------
-  // const DEV = true;
+  const DEV = true;
   //----------------BOARD LOAD--------------------------------------------------
   Board(8,8);
   //----------------BOARD FUNCTION----------------------------------------------
@@ -62,13 +64,13 @@ $(function(){
       if (way === 'H') {
         cells[position[0]][position[1]+i] = 1;
         $(`#cell_${x}_${y+i}`).data('ship', 'true');
-        // if(DEV)
-        //   $(`#cell_${x}_${y+i}`).css('background', 'red');
+        if(DEV)
+          $(`#cell_${x}_${y+i}`).css('background', 'red');
       } else{
         cells[position[0]+i][position[1]] = 1;
         $(`#cell_${x+i}_${y}`).data('ship', 'true');
-        // if(DEV)
-        //   $(`#cell_${x+i}_${y}`).css('background', 'red');
+        if(DEV)
+          $(`#cell_${x+i}_${y}`).css('background', 'red');
       }
     }
   }
@@ -79,7 +81,6 @@ $(function(){
   //----//-------//--CLICK LISTENER---//------//----------//--------//----------
   $('.grid-container').on('click','.grid-item',triggerAll);
   //-----------------CLICK FUNCTION GROUP---------------------------------------
-  let clicked = false;
   function triggerAll(){
     checkBox.call(this);
     clickCounter();
@@ -110,7 +111,10 @@ $(function(){
   }
   function reset(){
     if ((score % shipsLengths.reduce(gg)) === 0 && clicked ){
-      alert('Good Job!Now try the biggest score possible');
+      if (stopAlert === 1 ){
+        alert('Good Job! Keep going until you fail !');
+        stopAlert = 0;
+      }
       $( '.grid-container').empty();
       Board(8,8);
       clicked = false;
@@ -122,3 +126,11 @@ $(function(){
   }
 });
 //------------------THE END-----------------------------------------------------
+//
+// $(function nice() {
+// 		$( '#nice' ).dialog();
+// 	});
+//
+// setTimeOut(function() {
+//     $( '#dialog'.dialog( "close" )
+// }, 5000);
