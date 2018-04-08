@@ -126,7 +126,7 @@ $(function(){
   }
 });
 //------------------THE END-----------------------------------------------------
-//
+// Add animation to instructions next and work on making double click not possible.
 // $(function nice() {
 // 		$( '#nice' ).dialog();
 // 	});
