@@ -2,7 +2,7 @@ var cells = [];
 $(function(){
 //------------------VARIABLES---------------------------------------------------
   const shipsLengths = [3,3,3,3];
-  var score = 0;
+  let score = 0;
   let x = null;
   let y = null;
   let clickCount = 0;
@@ -100,6 +100,8 @@ $(function(){
   function clickCounter() {
     clickCount++;
     if(clickCount >= clickCountMax){
+      score = 0;
+      $('p.Score').text('Score : ').append(score);
       alert('YOU really are terrible at this');
       clickCount= 0;
       $( '.grid-container').empty();
@@ -127,10 +129,17 @@ $(function(){
 });
 //------------------THE END-----------------------------------------------------
 // Add animation to instructions next and work on making double click not possible.
-// $(function nice() {
-// 		$( '#nice' ).dialog();
-// 	});
+
+// CREATE AND FILL NUMBER ARRAY WITH NON-UNIQUE RANDOM NUMBERS
+
+// var randomShip = randomShipsLengths(5,10,3);
 //
-// setTimeOut(function() {
-//     $( '#dialog'.dialog( "close" )
-// }, 5000);
+// function randomShipsLengths(numElements,min,max) {
+//
+//   var nums = new Array;
+//   for (var element=0; element<numElements; element++) {
+//     nums[element] = (min,max);
+//   }
+//   console.log(nums);
+//   return (nums);
+// }
