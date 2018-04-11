@@ -132,7 +132,7 @@ $(function(){
 
 // CREATE AND FILL NUMBER ARRAY WITH NON-UNIQUE RANDOM NUMBERS
 
-// var randomShip = randomShipsLengths(5,10,3);
+// var randomShip = randomShipsLengths(5,3,10);
 //
 // function randomShipsLengths(numElements,min,max) {
 //
