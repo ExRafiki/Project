@@ -26,7 +26,7 @@ it so that a high score can only be achieved if correct guesses are made consist
 
 ###Visit game
 
- [Github](link).
+<a href="https://justfil01.github.io/WDI_LDN_PROJECT/">Github Page</a>
 
 ###ScreenShot
 
