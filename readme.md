@@ -69,9 +69,9 @@ making me waste a lot of time trying to change the data-attribute.
 
 ###Goals achieved
 
-- [x]Make a fun game that can be played more then once (mainly as a time killer).
-- [x]To create a functional game that has a clean code as DRY as i can manage.
-- [x]Focusing on a scalable game so it can be upgraded as the course goes on.
+- [X] Make a fun game that can be played more then once (mainly as a time killer).
+- [X] To create a functional game that has a clean code as DRY as i can manage.
+- [X] Focusing on a scalable game so it can be upgraded as the course goes on.
 - [ ] <span style="color:red">User friendly and interactive text/animation</span>
 
 ###Future Features
